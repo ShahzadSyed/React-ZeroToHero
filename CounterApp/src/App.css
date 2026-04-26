@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+#center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 35px 25px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.card h1 {
+  font-size: 32px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.count-box {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 25px;
+}
+
+.count-box p {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.count-box span {
+  font-size: 60px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.counter {
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Green Button */
+.increase {
+  background: #16a34a;
+}
+
+.increase:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
+
+/* Red Button */
+.decrease {
+  background: #dc2626;
+}
+
+.decrease:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* Blue Button */
+.reset {
+  background: #2563eb;
+}
+
+.reset:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 500px) {
+  .card {
+    padding: 25px 18px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+
+  .count-box span {
+    font-size: 48px;
+  }
+}
