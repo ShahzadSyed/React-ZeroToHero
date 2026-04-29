@@ -1,0 +1,24 @@
+#heading {
+  color: #e3cb81;  
+}
+
+.para {
+  width: 60%;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none ;
+  display: flex;
+  align-items: center;
+}
+
+#ImageArea {
+  width: 100px;
+  height: 100px;
+}
+
+#ImageArea img{
+  width: 100%;
+  height: 100%;
+}
