@@ -4,7 +4,7 @@ export default function Foodlist(){
     Title: "Biryani",
     Image: "https://hamariweb.com/recipes/images/recipeimages/3464.jpg",
     paragraph: "bht hi umda biryani",
-    quantity: 0
+    quantity: 34
   },
   {
     Title: "Karahi",
