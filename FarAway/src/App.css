@@ -1,0 +1,30 @@
+#form{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background-color: #df6b1a;
+  padding: 15px 20px;
+}
+
+#form button{
+  padding: 5px 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #66bfa2;
+}
+#packingList{
+  background-color: #4c3423;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+#packingList #btns{
+  display: flex;
+  gap: 10px;
+  border: none;
+  
+}
