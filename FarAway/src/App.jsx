@@ -5,13 +5,13 @@ import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [itemList, setItemList] = useState([])
 
   return (
     <>
       <Logo />
       <Form />
-      <PackingList />
+      <PackingList itemList = {itemList} />
       <Stats />
 
     </>
@@ -52,15 +52,13 @@ const Form = () =>{
   )
 }
 
-const PackingList = () =>{
+const PackingList = ({itemList}) =>{
   return(
     <div id='packingList'>
       <div id='itemsList'>
-        {/* item */}
-        {/* item */}
-        {/* item */}
-        {/* item */}
-        {/* item */}
+        {
+          itemList?.map(itemLi => <Item  /> )
+        }
       </div>
 
       <div id="btns">
@@ -97,5 +95,23 @@ const Stats = () =>{
       height : '29px',
       padding :'7px 0px'
     }}>You Have 6 Items on your list, and you already packed 0 (0%)</p>
+  )
+}
+
+const Item = () =>{
+  return(
+    <div style={{
+      display : 'flex',
+      gap : '10px'
+    }}>
+      <input type="checkbox" name="" id="" />
+      <p>test update</p>
+      <button style={{
+        height : '15px',
+        width : '15px',
+        fontSize : '10px'
+        
+      }}>X</button>
+    </div>
   )
 }
