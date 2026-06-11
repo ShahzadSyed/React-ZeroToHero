@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <Logo />
-      <Form />
+      <Form itemList={itemList} setItemList={setItemList} />
       <PackingList itemList = {itemList} />
-      <Stats />
+      <Stats itemList = {itemList} />
 
     </>
   )
@@ -30,11 +30,38 @@ function Logo(){
   )
 }
 
-const Form = () =>{
+const Form = ({itemList , setItemList}) =>{
+  
+  const [itemNumber , setItemNumber] = useState()
+  const [itemData , setItemData] = useState()
+
+const addHandler = () =>{
+ 
+  const newList  = [...itemList]
+
+  newList.push({
+    number : itemNumber,
+    data : itemData
+  })
+  setItemList(newList)
+ 
+}
+
+  const itemDataHandler = (value) =>{
+    setItemData(value)
+  }
+
+  const itemNumberHandler = (value) =>{
+    setItemNumber(value)
+  }
+
+
   return(
     <div id='form'>
       <p>What do you need  for your trip??</p>
-      <select>
+      <select onChange={(e) => {
+        itemNumberHandler(e.target.value)
+      }}>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -46,8 +73,9 @@ const Form = () =>{
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
-      <input type='text' placeholder='item..'></input>
-      <button>Add</button>
+      <input type='text' placeholder='item..' onChange={(e) => 
+        {itemDataHandler(e.target.value)}}></input>
+      <button onClick={addHandler}>Add</button>
     </div>
   )
 }
@@ -57,7 +85,7 @@ const PackingList = ({itemList}) =>{
     <div id='packingList'>
       <div id='itemsList'>
         {
-          itemList?.map(itemLi => <Item  /> )
+          itemList?.map(itemLi => <Item itemLi={itemLi} /> )
         }
       </div>
 
@@ -87,25 +115,25 @@ const PackingList = ({itemList}) =>{
 }
 
 
-const Stats = () =>{
+const Stats = ({itemList}) =>{
   return(
     <p style={{
       backgroundColor : "#68bfa2",
       textAlign : 'center',
       height : '29px',
       padding :'7px 0px'
-    }}>You Have 6 Items on your list, and you already packed 0 (0%)</p>
+    }}>You Have {itemList.length} Items on your list, and you already packed 0 (0%)</p>
   )
 }
 
-const Item = () =>{
+const Item = ({itemLi}) =>{
   return(
     <div style={{
       display : 'flex',
       gap : '10px'
     }}>
       <input type="checkbox" name="" id="" />
-      <p>test update</p>
+      <p>{itemLi.number} - {itemLi.data}</p>
       <button style={{
         height : '15px',
         width : '15px',
