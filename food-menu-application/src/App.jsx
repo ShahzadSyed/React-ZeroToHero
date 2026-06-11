@@ -1,7 +1,7 @@
   import { useState } from 'react'
   import './App.css'
-  import HeadingComponent from './Components/HeadingComponent';
-  import Foodlist from './Components/Foodlist';
+import HeadingComponent from "./components/HeadingComponent";
+import Foodlist from "./components/Foodlist";
 
   function App() {
 
