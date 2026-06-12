@@ -11,7 +11,7 @@ function App() {
     <>
       <Logo />
       <Form itemList={itemList} setItemList={setItemList} />
-      <PackingList itemList = {itemList} />
+      <PackingList itemList = {itemList} setItemList={setItemList} />
       <Stats itemList = {itemList} />
 
     </>
@@ -40,8 +40,10 @@ const addHandler = () =>{
   const newList  = [...itemList]
 
   newList.push({
+    id : Date.now(),
     number : itemNumber,
-    data : itemData
+    data : itemData,
+    isPacked : false
   })
   setItemList(newList)
  
@@ -80,12 +82,12 @@ const addHandler = () =>{
   )
 }
 
-const PackingList = ({itemList}) =>{
+const PackingList = ({itemList, setItemList}) =>{
   return(
     <div id='packingList'>
       <div id='itemsList'>
         {
-          itemList?.map(itemLi => <Item itemLi={itemLi} /> )
+          itemList?.map(itemLi => <Item itemLi={itemLi} itemList={itemList} setItemList={setItemList} /> )
         }
       </div>
 
@@ -102,7 +104,7 @@ const PackingList = ({itemList}) =>{
           <option value="">Sort by Description</option>
           <option value="">Sort by Packed Status</option>
         </select>
-        <button style={{
+        <button onClick={() => setItemList([])} style={{
           border:'none',
           width :'100px',
           backgroundColor : '#fde8b5',
@@ -122,18 +124,35 @@ const Stats = ({itemList}) =>{
       textAlign : 'center',
       height : '30px',
       padding :'7px 0px'
-    }}>You Have {itemList.length} Items on your list, and you already packed 0 (0%)</p>
+    }}>You Have {itemList.length} Items on your list, and you already packed {itemList.filter((i) =>
+    i.isPacked).length} ( {Math.round(itemList.filter((i) =>
+    i.isPacked).length / itemList.length * 100 ) || 0 }  %)</p>
   )
 }
 
-const Item = ({itemLi}) =>{
+const Item = ({itemLi, itemList, setItemList}) =>{
+
+  function listupdateHandler(bool){
+    const newArr = itemList.map((singleItem) => {      
+      return singleItem.id === itemLi.id ? {
+        ...itemLi,
+        isPacked : bool
+      } : singleItem
+    })
+
+    console.log(newArr , "Arraye value")
+    setItemList(newArr)
+  }
+
   return(
     <div style={{
       display : 'flex',
       gap : '10px'
     }}>
-      <input type="checkbox" name="" id="" />
-      <p>{itemLi.number} - {itemLi.data}</p>
+      <input type="checkbox" name="" id="" onChange={(e) => listupdateHandler(e.target.checked)} />
+      <p style={{
+        textDecoration: itemLi.isPacked ? "line-through" : "none"
+      }}>{itemLi.number} - {itemLi.data}</p>
       <button style={{
         height : '15px',
         width : '15px',
