@@ -120,7 +120,7 @@ const Stats = ({itemList}) =>{
     <p style={{
       backgroundColor : "#68bfa2",
       textAlign : 'center',
-      height : '29px',
+      height : '30px',
       padding :'7px 0px'
     }}>You Have {itemList.length} Items on your list, and you already packed 0 (0%)</p>
   )
