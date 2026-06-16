@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import FriendsList from './components/FriendsList.jsx';
 import AddFriends  from './components/AddFriends.jsx';
+import SplitBill from './components/SplitBill.jsx';
 import './App.css'
 
 
 function App() {
+
+  const[selectedfriend , setselectedfriend] =useState()
   
   const [friends, setfriends] = useState([
     {
-        name : "Ahmed",
-        image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkliIuVgejvDwavQJbzUFo2z99ptt-UGB43w&s',
+        name : "Shahzad",
+        image : 'https://media.licdn.com/dms/image/v2/D4D03AQF58Zb1X9rlTg/profile-displayphoto-scale_400_400/B4DZvc7KgkJMAg-/0/1768938056620?e=2147483647&v=beta&t=qmw0Hh2J8CXjqYAnDlJyRfPIkhGxlcP0DgijfGQVuL8',
         balance : 0
     },
     {
-        name : "Shahzad",
+        name : "Asad",
         image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4nZ136jiwgQJ8Nm-aeU6Hj8QqFI7TsOY-mg&s',
         balance : 0
     },
@@ -26,10 +29,21 @@ function App() {
 
   return (
     <div>
-    <h1>Eat N BILL </h1>
-    <FriendsList friends = {friends}/>
+      <h1 style={{
+        textAlign : "center"
+      }}>Eat N BILL </h1>
+    <div style={{
+      display : "flex",
+      justifyContent : "space-evenly"
+    }}>
+    
+    <div>
+    <FriendsList friends = {friends} setselectedfriend={setselectedfriend} />
     <AddFriends friends = {friends} setfriends={setfriends} />
-    {/* <SplitBill /> */}
+    </div>
+
+    {selectedfriend && <SplitBill selectedfriend={selectedfriend} />} 
+    </div>
     </div>
   )
 }
