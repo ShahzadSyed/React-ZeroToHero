@@ -38,7 +38,7 @@ function App() {
     }}>
     
     <div>
-    <FriendsList friends = {friends} setselectedfriend={setselectedfriend} />
+    <FriendsList friends = {friends} selectedfriend={selectedfriend} setselectedfriend={setselectedfriend} />
     <AddFriends friends = {friends} setfriends={setfriends} />
     </div>
 
