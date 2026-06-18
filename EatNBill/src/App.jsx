@@ -42,7 +42,7 @@ function App() {
     <AddFriends friends = {friends} setfriends={setfriends} />
     </div>
 
-    {selectedfriend && <SplitBill selectedfriend={selectedfriend} />} 
+    {selectedfriend && <SplitBill selectedfriend={selectedfriend} friends={friends} setfriends={setfriends} />} 
     </div>
     </div>
   )
