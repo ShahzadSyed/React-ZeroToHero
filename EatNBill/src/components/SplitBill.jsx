@@ -1,10 +1,27 @@
 import { useState } from "react"
 
-export default function SplitBill({selectedfriend}){
+export default function SplitBill({selectedfriend, friends, setfriends}){
 
     const [billValue , setbillValue] = useState(0)
     const [yourExpense , setyourExpense] = useState(0)
-    const [paidBY , setpaidBy] = useState('')
+    const [paidBY , setpaidBy] = useState('you')
+
+    const billManagementHandler = () =>{
+        const newfriendsList = friends.map((frnd) => {
+            if(frnd.name == selectedfriend.name)
+            {
+                return{
+                    ...frnd,
+                    balance : paidBY == 'you' ? 
+                    Number(frnd.balance) - (Number(billValue) - Number(yourExpense)) :
+                    Number(frnd.balance) + Number(yourExpense)
+                  
+                }
+            }
+            return frnd
+        })
+        setfriends(newfriendsList)
+    }
 
     return(
         <div>
@@ -23,11 +40,18 @@ export default function SplitBill({selectedfriend}){
                 <option value="you">you</option>
                 <option value={selectedfriend.name}>{selectedfriend.name}</option>
             </select>
-            <button onClick={() => console.log({
-                billValue,
-                yourExpense,
-                paidBY,
-            })}>split</button>
+            <button style={{
+    width: "100%", 
+    padding: "12px", 
+    backgroundColor: "#2563eb", 
+    color: "#ffffff", 
+    fontSize: "1.1rem", 
+    fontWeight: "600",
+    borderRadius: "8px",
+    marginTop: "24px",
+    cursor: "pointer",
+    border: "none"
+  }} onClick={billManagementHandler}>split</button>
 
         </div>
     )
