@@ -31,7 +31,7 @@ function App() {
     <div>
       <h1 style={{
         textAlign : "center"
-      }}>Eat N BILL </h1>
+      }}>Eat N BILL - Complete Process </h1>
     <div style={{
       display : "flex",
       justifyContent : "space-evenly"
