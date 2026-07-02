@@ -46,6 +46,7 @@ const Jobs =() => {
                 <option value="Designer">Designer</option>
                 <option value="Editor">Editor</option>
                 <option value="Marketing">Marketing</option>
+                <option value="Accounts">Accounts</option>
             </select>
         </div>
 
