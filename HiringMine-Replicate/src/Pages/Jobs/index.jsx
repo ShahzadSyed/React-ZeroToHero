@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react"
 import Navbar from "../../Components"
 
+
 const Jobs =() => {
     
-    const [filters , setFilters] = useState({})
-    const [Jobs , setJobs] = useState({})
+    const [filters , setFilters] = useState([])
+    const [Jobs , setJobs] = useState([])
 
     async function callFilterApi(url){
         const resJSON = await fetch(url)
-        const res = await resJSON.json() //OR => const {data} = await resJSON.json()
+        const {data} = await resJSON.json() //OR => const {data} = await resJSON.json()
 
-        setFilters(res.data) //OR => setFilters(data)
+        setFilters(data) //OR => setFilters(data)
     }
 
     async function callJobsApi(url){
@@ -39,16 +40,63 @@ const Jobs =() => {
 
         }}>This is Job Page</h1>
 
-        <div>
+        <div style={{
+            display :'flex',
+            justifyContent : 'space-around'
+        }}>
+            {
+            filters?.filteration?.map((filter , index) => {
+                return(
+                    <div>
             <select name="Category" id="">
-                <option value="Category">Category</option>
-                <option value="Developer">Developer</option>
-                <option value="Designer">Designer</option>
-                <option value="Editor">Editor</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Accounts">Accounts</option>
+                <option value="">{filter.filterationName}</option>
+                
+                {
+                    filter?.filterationOptions?.map((option) => {
+                        return(
+                            <option value="Accounts">{option.title}</option>
+                        )
+
+                    })
+                }
             </select>
         </div>
+                )
+            })
+        }
+        </div>
+
+        <h1 style={{
+            textAlign :'center'
+        }}>Our Jobs</h1>
+
+        {
+        Jobs.map(({
+          companyName,
+          designation,
+          payRangeStart,
+          country,
+          city
+        }) => {
+          return(
+            <div style={{
+        border :'2px solid black',
+        textAlign:'center',
+        marginTop:'30px',
+        padding :'20px',
+        display :'flex',
+        flexDirection :'column',
+        gap:'20px'
+      }}>
+        <h1>{companyName}</h1>
+        <h2>{designation}</h2>
+        <h4>salary : {payRangeStart || 'Not Disclosed!'}</h4>
+        <h5>{country}</h5>
+        <h5>{city}</h5>
+      </div>
+          )
+        })
+      }
 
         
         </>
