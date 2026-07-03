@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Navbar from "../../Components"
+import { Link } from "react-router-dom"
 
 
 const Jobs =() => {
@@ -76,10 +77,11 @@ const Jobs =() => {
           designation,
           payRangeStart,
           country,
-          city
+          city,
+          _id : id
         }) => {
           return(
-            <div style={{
+            <Link to={`/Jobs/${id}`} style={{
         border :'2px solid black',
         textAlign:'center',
         marginTop:'30px',
@@ -93,7 +95,7 @@ const Jobs =() => {
         <h4>salary : {payRangeStart || 'Not Disclosed!'}</h4>
         <h5>{country}</h5>
         <h5>{city}</h5>
-      </div>
+      </Link>
           )
         })
       }
