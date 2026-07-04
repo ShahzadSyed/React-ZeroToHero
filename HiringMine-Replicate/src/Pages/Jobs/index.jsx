@@ -1,35 +1,40 @@
 import { useEffect, useState } from "react"
 import Navbar from "../../Components"
 import { Link } from "react-router-dom"
+import useFetch from "../../CustomHook/useFetch"
 
 
 const Jobs =() => {
     
-    const [filters , setFilters] = useState([])
-    const [Jobs , setJobs] = useState([])
+    // const [filters , setFilters] = useState([])
+    // const [Jobs , setJobs] = useState([])
 
-    async function callFilterApi(url){
-        const resJSON = await fetch(url)
-        const {data} = await resJSON.json() //OR => const {data} = await resJSON.json()
+    const [filters] = useFetch('https://api.hiringmine.com/api/filterations/all',true)
 
-        setFilters(data) //OR => setFilters(data)
-    }
+    const [Jobs] = useFetch('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
 
-    async function callJobsApi(url){
-        const resJSON = await fetch(url)
-        const {data} = await resJSON.json() //OR => const {data} = await resJSON.json()
+    // async function callFilterApi(url){
+    //     const resJSON = await fetch(url)
+    //     const {data} = await resJSON.json() //OR => const {data} = await resJSON.json()
 
-        setJobs(data) //OR => setFilters(data)
-    }
+    //     setFilters(data) //OR => setFilters(data)
+    // }
 
-    useEffect(() => {
+    // async function callJobsApi(url){
+    //     const resJSON = await fetch(url)
+    //     const {data} = await resJSON.json() //OR => const {data} = await resJSON.json()
 
-        //Filters API is called
-        callFilterApi(`https://api.hiringmine.com/api/filterations/all`)
+    //     setJobs(data) //OR => setFilters(data)
+    // }
 
-        //Jobs API is called
-        callJobsApi(`https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=`)
-    },[])
+    // useEffect(() => {
+
+    //     //Filters API is called
+    //     // callFilterApi(`https://api.hiringmine.com/api/filterations/all`)
+
+    //     //Jobs API is called
+    //     callJobsApi(`https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=`)
+    // },[])
 
 
     return(
