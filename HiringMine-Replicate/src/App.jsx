@@ -3,41 +3,47 @@ import Navbar from './Components'
 import './App.css'
 import Home from './Pages/Home'
 import { useEffect } from "react"
+import useFetch from './CustomHook/useFetch'
 
 function App() {
 
-  const [jobs , setJobs]  =useState([])
-  const [users, setUsers]  =useState([])
+  // const [jobs , setJobs]  =useState([])
+  // const [users, setUsers]  =useState([])
+
+  //custom Hook
+  const [jobs] = useFetch('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
+
+  const [users] = useFetch('https://api.hiringmine.com/api/users/home?sortBy=mostViewed')
 
   console.log(jobs ,"==>> Jobs")
   console.log(users ,"==>> users")
 
 
-   function callAPi(url){
-        fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          const {data} = res
-          setJobs(data)
-        })
-        .catch((error) => console.log(error))
-    }
+  //  function callAPi(url){
+  //       fetch(url)
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         const {data} = res
+  //         setJobs(data)
+  //       })
+  //       .catch((error) => console.log(error))
+  //   }
 
-    function callUserAPi(url){
-        fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          const {data} = res
-          setUsers(data)
-        })
-        .catch((error) => console.log(error))
-    }
+    // function callUserAPi(url){
+    //     fetch(url)
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //       const {data} = res
+    //       setUsers(data)
+    //     })
+    //     .catch((error) => console.log(error))
+    // }
 
-    useEffect(() => {
+    // useEffect(() => {
      
-        callAPi('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
-        callUserAPi('https://api.hiringmine.com/api/users/home?sortBy=mostViewed')
-    },[])
+    //     // callAPi('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
+    //     callUserAPi('https://api.hiringmine.com/api/users/home?sortBy=mostViewed')
+    // },[])
  
   return (
     <>
