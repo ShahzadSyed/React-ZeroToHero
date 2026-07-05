@@ -4,13 +4,16 @@ import './App.css'
 import Home from './Pages/Home'
 import { useEffect } from "react"
 import useFetch from './CustomHook/useFetch'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
 
   // const [jobs , setJobs]  =useState([])
   // const [users, setUsers]  =useState([])
 
-  
+  const navigate = useNavigate()
+
+  const [keyword, setKeyword] = useState("");
 
   //custom Hook
   const [jobs] = useFetch('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
@@ -19,6 +22,11 @@ function App() {
 
   console.log(jobs ,"==>> Jobs")
   console.log(users ,"==>> users")
+
+  function pageHandler(){
+    // navigate('/Jobs?keyWord=react')
+     navigate(`/Jobs?keyWord=${encodeURIComponent(keyword)}`);
+  }
 
 
   //  function callAPi(url){
@@ -52,15 +60,20 @@ function App() {
 
       <Navbar />
 
-      <div style={{
+       <div style={{
         textAlign:'center'
-        
-        
-      }}>
-        <input
-    type="text"
-    placeholder="Search Jobs..."/>
-      </div>
+       }}>
+      <input
+        type="text"
+        placeholder="Search Jobs..."
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+      />
+
+      <button onClick={pageHandler}>
+        Search
+      </button>
+    </div>
 
 
 
