@@ -10,6 +10,8 @@ function App() {
   // const [jobs , setJobs]  =useState([])
   // const [users, setUsers]  =useState([])
 
+  
+
   //custom Hook
   const [jobs] = useFetch('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
 
@@ -49,6 +51,19 @@ function App() {
     <>
 
       <Navbar />
+
+      <div style={{
+        textAlign:'center'
+        
+        
+      }}>
+        <input
+    type="text"
+    placeholder="Search Jobs..."/>
+      </div>
+
+
+
       <h1 style={{
         textAlign :"center"
       }}>This is App Componenets</h1>
