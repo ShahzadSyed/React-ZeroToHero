@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Navbar from "../../Components"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import useFetch from "../../CustomHook/useFetch"
 
 
@@ -9,9 +9,14 @@ const Jobs =() => {
     // const [filters , setFilters] = useState([])
     // const [Jobs , setJobs] = useState([])
 
+    const [searchParam , setSearchParam] = useSearchParams()
+
+    const urlKeyword  = searchParam.get('keyWord')
+    // const [keyword, setKeyword] = useState("");
+
     const [filters] = useFetch('https://api.hiringmine.com/api/filterations/all',true)
 
-    const [Jobs] = useFetch('https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
+    const [Jobs] = useFetch(`https://api.hiringmine.com/api/jobAds/all?limit=10&pageNo=1&keyWord=${urlKeyword || ''}&category=&isPending=false&skills=`)
 
     // async function callFilterApi(url){
     //     const resJSON = await fetch(url)
