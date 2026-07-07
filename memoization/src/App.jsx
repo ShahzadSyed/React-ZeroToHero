@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -22,6 +22,29 @@ function App() {
     }
   },[])
 
+  //======Implementation of useCallBack Case Start==========================//
+
+  //option 1 - will render component every time
+  //this is simple function and we will parcel to the component, it will re-render my UI without any changes
+  
+  // function foo(){
+
+  // }
+
+
+  //option 2 - will not allow to render component every time!
+  //if we don't want to re-render the component without any reason then we will use usecallBack() instead of making simple function!
+  const foo = useCallback(function(){
+    
+  },[])
+
+
+
+
+
+
+  //======Implementation of useCallBack Case End==========================//
+
   // CASE STUDY
   // 1- memo  => stop re-rendering
   // 2- if {} != {} means if try to compare empty objects it goes false and memo unable to stop re-rendering
@@ -40,7 +63,7 @@ function App() {
 
     <button onClick={() => setState(!state)}>State Changer</button>
 
-      <Home count={count} obj ={obj} />
+      <Home count={count} obj ={obj} foo={foo} />
       <About />
       <Contact />
     </>
