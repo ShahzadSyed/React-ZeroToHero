@@ -97,7 +97,12 @@ function About() {
 function Contact() {
   console.log("Contact Component is rendering!")
   return(
-    <h1>Hello qworld by Contact</h1>
+    <>
+    <h2>Hello qworld by Contact</h2>
+    <p>Cotact components</p>
+    </>
+
+
   )
 }
 
